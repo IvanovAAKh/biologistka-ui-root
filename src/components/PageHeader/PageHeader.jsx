@@ -9,8 +9,8 @@ import {
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import withAvailablePages from 'HOCs/withAvailablePages';
-import withScreenSize from 'HOCs/withScreenSize';
+import useAvailablePages from 'hooks/useAvailablePages';
+import useScreenSize from 'hooks/useScreenSize';
 import * as SCREEN_SIZES from 'constants/screenSizes';
 import * as COLORS from 'constants/colors';
 import * as PAGES from 'constants/pages';
@@ -53,10 +53,7 @@ const getClasses = makeStyles(theme => ({
   }
 }));
 
-const PageHeader = ({
-  availablePages,
-  screenSize,
-}) => {
+const PageHeader = () => {
   const classes = getClasses();
   const { formatMessage } = useIntl();
   const history = useHistory();
@@ -64,6 +61,9 @@ const PageHeader = ({
     pathname,
     search,
   } = useLocation();
+  const availablePages = useAvailablePages();
+  console.log(availablePages);
+  const screenSize = useScreenSize();
 
   return (
     <div className={classes.container}>
@@ -139,4 +139,4 @@ const PageHeader = ({
   )
 };
 
-export default withAvailablePages(withScreenSize(PageHeader));
+export default PageHeader;

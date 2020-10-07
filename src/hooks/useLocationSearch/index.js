@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Redirect,
+  useHistory,
   useLocation,
 } from 'react-router-dom';
 import * as LANGUAGES from 'constants/languages';
@@ -42,30 +42,25 @@ const getValidLocationSearch = (inputLocationSearch, invalidLocationSearchParams
   return validLocationSearch;
 };
 
-const withLocationSearch = (Component) => (props) => {
+const useLocationSearch = () => {
   const {
     pathname,
     search,
   } = useLocation();
+  const history = useHistory();
 
   const locationSearch = searchToObject(search);
   const invalidLocationSearchParams = getInvalidLocationSearchParams(locationSearch);
+  const validLocationSearch = getValidLocationSearch(locationSearch, invalidLocationSearchParams);
 
-  return !invalidLocationSearchParams.length
-    ? (
-      <Component
-        locationSearch={locationSearch}
-        {...props}
-      />
-    )
-    : (
-      <Redirect
-        to={{
-          pathname,
-          search: `?${new URLSearchParams(getValidLocationSearch(locationSearch, invalidLocationSearchParams)).toString()}`,
-        }}
-      />
-    )
+  if (invalidLocationSearchParams.length) {
+    history.replace({
+      pathname: history.location.pathname,
+      search: `?${new URLSearchParams(validLocationSearch).toString()}`,
+    });
+  }
+
+  return validLocationSearch;
 };
 
-export default withLocationSearch;
+export default useLocationSearch;

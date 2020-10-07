@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import withScreenSize from 'HOCs/withScreenSize';
+import useScreenSize from 'hooks/useScreenSize';
 import * as COLORS from 'constants/colors';
 import * as SCREEN_SIZES from 'constants/screenSizes';
 
@@ -47,9 +47,9 @@ const getClasses = makeStyles((theme) => ({
 const PagesContainer = ({
   children,
   fullWidth,
-  screenSize,
 }) => {
   const classes = getClasses();
+  const screenSize = useScreenSize();
   return (
     <div className={classes.container}>
       {screenSize === SCREEN_SIZES.LARGE && (
@@ -73,4 +73,4 @@ const PagesContainer = ({
   )
 };
 
-export default withScreenSize(PagesContainer);
+export default PagesContainer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import withScreenSize from 'HOCs/withScreenSize';
+import useScreenSize from 'hooks/useScreenSize';
 import * as screenSizes from 'constants/screenSizes';
 import * as COLORS from 'constants/colors';
 
@@ -37,9 +37,9 @@ const getClasses = makeStyles(theme => ({
 
 const Footer = ({
   children,
-  screenSize,
 }) => {
   const classes = getClasses();
+  const screenSize = useScreenSize();
   return (
     <div className={classes.container}>
       {screenSize === screenSizes.LARGE && (
@@ -85,4 +85,4 @@ const Footer = ({
   )
 };
 
-export default withScreenSize(Footer);
+export default Footer;

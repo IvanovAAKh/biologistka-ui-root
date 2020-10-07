@@ -10,6 +10,7 @@ const Main = ({
   isFetching,
 }) => {
   useEffect(() => {
+    console.log('Why?');
     actionFetch({
 
     });
@@ -38,11 +39,11 @@ const Main = ({
 
 const mapDispatchToProps = (dispatch) => {
   const {
-    fetch,
+    fetchD,
   } = bindActionCreators(importedActions, dispatch);
 
   return ({
-    actionFetch: fetch,
+    actionFetch: fetchD,
   });
 };
 

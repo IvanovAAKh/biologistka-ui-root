@@ -12,7 +12,7 @@ const getScreenSize = () => {
   return SCREEN_SIZES.LARGE
 };
 
-const withScreenSize = (Component) => (props) => {
+const useScreenSize = () => {
   const [currentScreenSize, setCurrentScreenSize] = useState(getScreenSize());
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const withScreenSize = (Component) => (props) => {
     return () => window.removeEventListener('resize', onWindowResize);
   }, []);
 
-  return <Component screenSize={currentScreenSize} {...props} />
+  return currentScreenSize;
 };
 
-export default withScreenSize;
+export default useScreenSize;

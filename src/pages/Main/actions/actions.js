@@ -38,7 +38,7 @@ export const get = ({
   })
 };
 
-export const fetch = ({
+export const fetchD = ({
 }) => (dispatch) => {
   dispatch(request());
   get({

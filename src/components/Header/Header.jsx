@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 
-import withLocationSearch from 'HOCs/withLocationSearch';
+import useLocationSearch from 'hooks/useLocationSearch';
 import * as COLORS from 'constants/colors';
 import * as LANGUAGES from 'constants/languages';
 
@@ -32,10 +32,9 @@ const getClasses = makeStyles(theme => ({
   },
 }));
 
-const Header = ({
-  locationSearch,
-}) => {
+const Header = () => {
   const classes = getClasses();
+  const locationSearch = useLocationSearch();
   const {
     lang,
   } = locationSearch;
@@ -47,11 +46,9 @@ const Header = ({
     <div className={classes.container}>
       <div className={classes.logoContainer}>
         <Typography color="textSecondary" variant="h4">
-          <strike>
-             <em>
-                Crypto-predictor
-             </em>
-          </strike>
+           <em>
+              Biologistka
+           </em>
         </Typography>
       </div>
       <div className={classes.toolBarContainer}>
@@ -88,4 +85,4 @@ const Header = ({
   )
 };
 
-export default withLocationSearch(Header);
+export default Header;
