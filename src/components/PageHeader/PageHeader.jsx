@@ -62,7 +62,6 @@ const PageHeader = () => {
     search,
   } = useLocation();
   const availablePages = useAvailablePages();
-  console.log(availablePages);
   const screenSize = useScreenSize();
 
   return (

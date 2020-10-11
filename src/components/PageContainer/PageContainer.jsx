@@ -50,25 +50,20 @@ const PagesContainer = ({
 }) => {
   const classes = getClasses();
   const screenSize = useScreenSize();
+  let contentContainerClass = classes.contentContainer;
+  if (fullWidth || [
+    SCREEN_SIZES.SMALL,
+    SCREEN_SIZES.MEDIUM
+  ].includes(screenSize)) {
+    contentContainerClass = classes.fullWidthContentContainer;
+  }
   return (
     <div className={classes.container}>
-      {screenSize === SCREEN_SIZES.LARGE && (
-        <div className={fullWidth ? classes.fullWidthContentContainer : classes.contentContainer}>
-          <div className={classes.content}>
-            {children}
-          </div>
+      <div className={contentContainerClass}>
+        <div className={classes.content}>
+          {children}
         </div>
-      )}
-      {[
-        SCREEN_SIZES.SMALL,
-        SCREEN_SIZES.MEDIUM
-      ].includes(screenSize) && (
-        <div className={classes.fullWidthContentContainer}>
-          <div className={classes.content}>
-            {children}
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   )
 };

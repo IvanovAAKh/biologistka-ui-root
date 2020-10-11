@@ -7,12 +7,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     host: '192.168.0.103',
-    port: 3011,
+    port: 3010,
   },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index_bundle.js",
-    publicPath: '/',
+    publicPath: './',
   },
   module: {
     rules: [
