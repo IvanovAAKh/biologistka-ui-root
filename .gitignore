@@ -1,4 +1,16 @@
+# dependencies
 .idea
-dist/
-node_modules/
-src/config/
+/node_modules
+/src/config
+
+# production
+/build
+
+
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

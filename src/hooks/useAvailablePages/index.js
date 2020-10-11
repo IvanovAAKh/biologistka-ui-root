@@ -1,4 +1,3 @@
-import React from 'react';
 import * as PAGES from 'constants/pages';
 
 const useAvailablePages = () => {

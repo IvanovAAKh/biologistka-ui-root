@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   useHistory,
   useLocation,
@@ -44,7 +43,6 @@ const getValidLocationSearch = (inputLocationSearch, invalidLocationSearchParams
 
 const useLocationSearch = () => {
   const {
-    pathname,
     search,
   } = useLocation();
   const history = useHistory();
