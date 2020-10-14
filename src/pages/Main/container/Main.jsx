@@ -20,7 +20,13 @@ const Main = ({
     <>
       {isFetching &&
         <div>
-          Loading...
+          {(() => {
+            const result = [];
+            for (let i = 0; i< 100; i++) {
+              result.push(<div>Loading...</div>);
+            }
+            return result;
+          })()}
         </div>
       }
       {isFailed &&
