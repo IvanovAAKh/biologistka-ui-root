@@ -24,5 +24,12 @@ export const GOLDEN = {
   _10: '#fbfaf8',
 };
 
+export const BEIGE = {
+  _100: '#f6efe6',
+};
+
 export const GRAY = '#F0F0F0';
 export const WHITE = '#FFFFFF';
+
+export const TELEGRAM = '#0088cc';
+export const INSTAGRAM = '#E1306C';

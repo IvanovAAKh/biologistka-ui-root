@@ -1,5 +1,8 @@
 {
   "fetch.errorOccurred": "Во время загрузки произошла ошибка.",
   "fetch.loading": "Загрузка...",
-  "page.MAIN": "Главная"
+  "page.MAIN": "Главная",
+  "section.ABOUT_ME": "Обо мне",
+  "section.WORKBOOKS": "Конспекты",
+  "section.CONTACTS": "Контакты"
 }

@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  useHistory,
-} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
+import IconButton from '@material-ui/core/IconButton';
+import IconMenu from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 
+import Logo from 'components/Logo';
+import LeftNavBar from 'components/LeftNavBar';
 import useLocationSearch from 'hooks/useLocationSearch';
 import * as COLORS from 'constants/colors';
 import * as LANGUAGES from 'constants/languages';
@@ -16,19 +20,36 @@ import * as LANGUAGES from 'constants/languages';
 const getClasses = makeStyles(theme => ({
   container: {
     alignItems: 'center',
-    background: COLORS.GRAY,
+    background: COLORS.GOLDEN._10,
     display: 'flex',
-    height: '64px',
+    justifyContent: 'space-between',
+    height: '48px',
     paddingLeft: `${theme.spacing(2)}px`,
     paddingRight: `${theme.spacing(2)}px`,
+    position: 'sticky',
+    top: 0,
   },
-  logoContainer: {
-    minWidth: 'fit-content',
+  iconButtonContainer: {
+    marginLeft: `-${theme.spacing(2)}px`,
   },
-  toolBarContainer: {
+  icon: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    height: '24px',
+    width: '24px',
+  },
+  paddingLeft2x: {
+    paddingLeft: `${theme.spacing(2)}px`,
+  },
+  toolBarContainerLeft: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolBarContainerRight: {
+    alignItems: 'center',
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '100%',
   },
 }));
 
@@ -38,50 +59,75 @@ const Header = () => {
   const {
     lang,
   } = locationSearch;
-  const [selectedLanguage, setSelectedLanguage] = (useState(lang));
+  const [leftMenuOptions, setLeftMenuOptions] = useState({
+    opened: false,
+  });
+  const [selectedLanguage, setSelectedLanguage] = useState(lang);
   const { formatMessage } = useIntl();
   const history = useHistory();
+  const scrollTrigger = useScrollTrigger({threshold: 48});
 
   return (
-    <div className={classes.container}>
-      <div className={classes.logoContainer}>
-        <Typography color="textSecondary" variant="h4">
-           <em>
-              Biologistka
-           </em>
-        </Typography>
-      </div>
-      <div className={classes.toolBarContainer}>
-        <Select
-          value={selectedLanguage}
-          onChange={({ target }) => {
-            setSelectedLanguage(target.value);
-            history.replace({
-              pathname: history.location.pathname,
-              search: `?${new URLSearchParams({
-                ...locationSearch,
-                lang: target.value,
-              }).toString()}`,
-            });
-          }}
-        >
-          {Object
-            .keys(LANGUAGES)
-            .map(langCode => (
-            <MenuItem
-              key={langCode}
-              value={langCode}
+    <Slide
+      appear={false}
+      direction="down"
+      in={!scrollTrigger}
+    >
+      <div className={classes.container}>
+        <div className={classes.toolBarContainerLeft}>
+          <div className={classes.iconButtonContainer}>
+            <IconButton
+              onClick={() => setLeftMenuOptions({
+                ...leftMenuOptions,
+                opened: true,
+              })}
             >
-              <Typography color="textPrimary">
-                {formatMessage({
-                  id: `interfaceLang.${langCode}`,
-                })}
-              </Typography>
-            </MenuItem>
-          ))}
-        </Select>
+              <IconMenu className={classes.icon} />
+            </IconButton>
+            <LeftNavBar
+              opened={leftMenuOptions.opened}
+              onClose={() => setLeftMenuOptions({
+                ...leftMenuOptions,
+                opened: false,
+              })}
+            />
+          </div>
+          <div className={classes.paddingLeft2x}>
+            <Logo />
+          </div>
+        </div>
+        <div className={classes.toolBarContainerRight}>
+          <Select
+            value={selectedLanguage}
+            onChange={({ target }) => {
+              setSelectedLanguage(target.value);
+              history.replace({
+                pathname: history.location.pathname,
+                search: `?${new URLSearchParams({
+                  ...locationSearch,
+                  lang: target.value,
+                }).toString()}`,
+              });
+            }}
+          >
+            {Object
+              .keys(LANGUAGES)
+              .map(langCode => (
+                <MenuItem
+                  key={langCode}
+                  value={langCode}
+                >
+                  <Typography color="textPrimary">
+                    {formatMessage({
+                      id: `interfaceLang.short.${langCode}`,
+                    })}
+                  </Typography>
+                </MenuItem>
+              ))}
+          </Select>
+        </div>
       </div>
-    </div>
+    </Slide>
   )
 };
 
