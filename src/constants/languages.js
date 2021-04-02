@@ -1,3 +1,3 @@
-export const EN = 'EN';
-export const RU = 'RU';
-export const UA = 'UA';
+export const en = 'en';
+export const ru = 'ru';
+export const ua = 'ua';

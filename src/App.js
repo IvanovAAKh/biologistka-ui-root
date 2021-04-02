@@ -24,11 +24,11 @@ export default () => {
           <Header />
           <Switch>
             <Route path={PAGES.MAIN}>
-              <div style={{overflow: 'overlay'}}>
-                [eq
-                {[...new Array(120)].map(() => <div>aasfasfafa</div>)}
-              </div>
-              {/*<PageMain />*/}
+              {/*<div style={{overflow: 'overlay'}}>*/}
+                {/*[eq*/}
+                {/*{[...new Array(120)].map(() => <div>aasfasfafa</div>)}*/}
+              {/*</div>*/}
+              <PageMain />
             </Route>
             <Redirect from="*" to={PAGES.MAIN} />
           </Switch>

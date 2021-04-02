@@ -5,7 +5,7 @@ import {
 import * as LANGUAGES from 'constants/languages';
 
 const DEFAULT_LOCATION_SEARCH = {
-  lang: LANGUAGES.EN,
+  lang: LANGUAGES.en,
 };
 
 const searchToObject = (search) => {

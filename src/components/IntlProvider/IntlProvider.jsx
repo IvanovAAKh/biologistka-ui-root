@@ -14,7 +14,7 @@ const IntlProvider = ({
   } = useLocationSearch();
 
   return (
-    <ReactIntlProvider  locale={lang} messages={getMessages(lang)}>
+    <ReactIntlProvider locale={lang} messages={getMessages(lang)}>
       {children}
     </ReactIntlProvider>
   )

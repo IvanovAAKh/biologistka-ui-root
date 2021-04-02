@@ -73,6 +73,7 @@ const LeftNavBar = ({
       disableBackdropTransition
       open={opened}
       onClose={onClose}
+      onOpen={() => {}}
     >
       <div className={classes.leftNavPanel}>
         <List>

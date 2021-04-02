@@ -53,6 +53,12 @@ const getClasses = makeStyles(theme => ({
   },
 }));
 
+const INTERFACE_LANGUAGES = {
+  en: 'Eng',
+  ru: 'Рус',
+  ua: 'Укр',
+};
+
 const Header = () => {
   const classes = getClasses();
   const locationSearch = useLocationSearch();
@@ -63,7 +69,6 @@ const Header = () => {
     opened: false,
   });
   const [selectedLanguage, setSelectedLanguage] = useState(lang);
-  const { formatMessage } = useIntl();
   const history = useHistory();
   const scrollTrigger = useScrollTrigger({threshold: 48});
 
@@ -98,6 +103,7 @@ const Header = () => {
         </div>
         <div className={classes.toolBarContainerRight}>
           <Select
+            focusable={false}
             value={selectedLanguage}
             onChange={({ target }) => {
               setSelectedLanguage(target.value);
@@ -118,9 +124,7 @@ const Header = () => {
                   value={langCode}
                 >
                   <Typography color="textPrimary">
-                    {formatMessage({
-                      id: `interfaceLang.short.${langCode}`,
-                    })}
+                    {INTERFACE_LANGUAGES[langCode]}
                   </Typography>
                 </MenuItem>
               ))}

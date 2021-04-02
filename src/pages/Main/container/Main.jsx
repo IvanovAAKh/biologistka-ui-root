@@ -9,15 +9,24 @@ const Main = ({
   isFailed,
   isFetching,
 }) => {
+  const [myVar, setMyVar] = useState(0);
   useEffect(() => {
     console.log('Why?');
-    actionFetch({
-
-    });
+    // actionFetch({
+    //
+    // });
   }, []);
-
+  useEffect(() => {
+    console.log('Use Effect: ', myVar);
+  }, [myVar]);
+  console.log('Render: ', myVar);
   return (
     <>
+      {(() => {
+        console.log('DOM render: ', myVar);
+        return myVar;
+      })()}
+      <button onClick={() => setMyVar(myVar + 1)}>asd</button>
       {isFetching &&
         <div>
           {(() => {

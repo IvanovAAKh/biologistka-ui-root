@@ -1,9 +1,6 @@
 {
   "fetch.errorOccurred": "Some error occurred during loading process.",
   "fetch.loading": "Loading...",
-  "interfaceLang.short.EN": "Eng",
-  "interfaceLang.short.RU": "Рус",
-  "interfaceLang.short.UA": "Укр",
   "page.MAIN": "Main",
   "section.ABOUT_ME": "About me",
   "section.WORKBOOKS": "Workbooks",

@@ -1,5 +1,5 @@
 import * as LANGUAGES from 'constants/languages';
-const DEFAULT_LANG = LANGUAGES.EN;
+const DEFAULT_LANG = LANGUAGES.en;
 
 export default (lang) => {
   const defaultMessages = require(`./messages.json`);
