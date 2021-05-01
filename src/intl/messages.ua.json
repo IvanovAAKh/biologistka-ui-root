@@ -1,6 +1,7 @@
 {
   "fetch.errorOccurred": "Пiд час завантаження сталася помилка.",
   "fetch.loading": "Завантаження...",
+  "login": "Увiйти",
   "page.MAIN": "Головна",
   "section.ABOUT_ME": "Про себе",
   "section.WORKBOOKS": "Конспекти",

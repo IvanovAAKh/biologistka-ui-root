@@ -1,7 +1,7 @@
 # dependencies
 .idea
 /node_modules
-/src/config
+/src/config/index.js
 
 # production
 /build

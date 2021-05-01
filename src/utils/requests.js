@@ -1,7 +1,19 @@
+const getHeaders = () => ({
+  Accept: 'application/json',
+  Authorization: localStorage.getItem('token'),
+  'Content-Type': 'application/json',
+});
+
 const fetchGet = ({ params = {}, url }) => {
   url = new URL(url);
   url.search = new URLSearchParams(params).toString();
-  return fetch(url);
+  return fetch(
+    url,
+    {
+      headers: getHeaders(),
+      method: 'GET',
+    }
+  );
 };
 
 const fetchPost = ({ body, params = {}, url }) => {
@@ -12,10 +24,7 @@ const fetchPost = ({ body, params = {}, url }) => {
     url,
     {
       body: JSON.stringify(body),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+      headers: getHeaders(),
       method: 'POST',
     }
   );

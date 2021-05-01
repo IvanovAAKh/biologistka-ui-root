@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,8 +15,19 @@ import Header from 'components/Header';
 import PageMain from 'pageProviders/Main';
 import MUI_THEME from 'constants/muiTheme';
 import * as PAGES from 'constants/pages';
+import useActions from 'hooks/useActions';
+
+import * as userActions from '../actions/user';
 
 export default () => {
+  const {
+    fetchUser,
+  } = useActions(userActions);
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   return (
     <ThemeProvider theme={createMuiTheme(MUI_THEME)}>
       <Router>

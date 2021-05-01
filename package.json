@@ -16,8 +16,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "set HTTPS=true && set PORT=3010 && react-scripts start",
-    "start:prod": "react-scripts build && serve -s build -l 3010",
+    "start": "set HTTPS=true && set PORT=3002 && react-scripts start",
+    "start:prod": "react-scripts build && serve -s build -l 3002",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
