@@ -1,14 +1,12 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useIntl } from 'react-intl';
 import {
   useHistory,
   useLocation,
 } from 'react-router-dom';
-
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
+import React from 'react';
+import Tab from 'components/Tab';
+import Tabs from 'components/Tabs';
 import useAvailablePages from 'hooks/useAvailablePages';
 import useScreenSize from 'hooks/useScreenSize';
 import * as SCREEN_SIZES from 'constants/screenSizes';
@@ -47,8 +45,6 @@ const getClasses = makeStyles(theme => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    paddingLeft: `${theme.spacing(1)}px`,
-    paddingRight: `${theme.spacing(1)}px`,
     width: '100%',
   }
 }));
@@ -80,16 +76,10 @@ const PageHeader = () => {
             >
               {availablePages.map(page => (
                 <Tab
-                  label={(
-                    <Typography color="textPrimary">
-                      <strong>
-                        {formatMessage({
-                          id: `page.${Object
-                            .keys(PAGES)
-                            .find(pageKey => PAGES[pageKey] === page)}`},
-                        )}
-                      </strong>
-                    </Typography>
+                  label={formatMessage({
+                    id: `page.${Object
+                      .keys(PAGES)
+                      .find(pageKey => PAGES[pageKey] === page)}`},
                   )}
                   key={page}
                 />
@@ -116,16 +106,10 @@ const PageHeader = () => {
             >
               {availablePages.map(page => (
                 <Tab
-                  label={(
-                    <Typography color="textPrimary">
-                      <strong>
-                        {formatMessage({
-                          id: `page.${Object
-                            .keys(PAGES)
-                            .find(pageKey => PAGES[pageKey] === page)}`},
-                        )}
-                      </strong>
-                    </Typography>
+                  label={formatMessage({
+                    id: `page.${Object
+                      .keys(PAGES)
+                      .find(pageKey => PAGES[pageKey] === page)}`},
                   )}
                   key={page}
                 />

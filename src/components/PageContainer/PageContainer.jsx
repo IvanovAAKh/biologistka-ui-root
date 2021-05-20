@@ -17,7 +17,6 @@ const getClasses = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    padding: `${theme.spacing(1)}px`,
     paddingTop: `${theme.spacing(2)}px`
   },
   contentContainer: {

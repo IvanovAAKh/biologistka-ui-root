@@ -38,7 +38,10 @@ export const getJson = ({ params, url }) => {
     if (response.ok) {
       return response.json();
     }
-    return Promise.reject();
+    return response.json()
+      .then(errors => {
+        throw errors;
+      });
   });
 };
 
@@ -76,6 +79,9 @@ export const postJson = ({ body, params, url }) => {
     if (response.ok) {
       return response.json();
     }
-    return Promise.reject();
+    return response.json()
+      .then(errors => {
+        throw errors;
+      });
   });
 };

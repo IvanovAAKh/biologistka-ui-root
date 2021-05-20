@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Typography from 'components/Typography';
 
 import useScreenSize from 'hooks/useScreenSize';
 import * as screenSizes from 'constants/screenSizes';
@@ -49,7 +49,7 @@ const Footer = ({
               ? children
               : (
                 <Typography
-                  color="textSecondary"
+                  color="tertiary"
                   variant="caption"
                 >
                   Created by IvanovAAKh@gmail.com - 23.04.2020

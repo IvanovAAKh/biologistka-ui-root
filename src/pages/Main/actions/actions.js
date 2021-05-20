@@ -7,7 +7,7 @@ import {
 import {
   postJson
 } from 'utils/requests';
-import config from 'constants/config';
+import config from 'config';
 
 export const errorReceive = () => ({
   type: ERROR_RECEIVE_,

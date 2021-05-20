@@ -9,15 +9,22 @@ export default {
     },
   },
   palette: {
+    icon: {
+      main: COLORS.BROWN._30,
+    },
     primary: {
       main: COLORS.BROWN._100,
     },
     secondary: {
       main: COLORS.GOLDEN._100,
     },
+    tertiary: {
+      main: COLORS.GOLDEN._20,
+    },
     text: {
       primary: COLORS.BROWN._100,
       secondary: COLORS.BROWN._50,
+      tertiary: COLORS.GOLDEN._100,
     },
   },
   typography: {
@@ -27,8 +34,9 @@ export default {
       lineHeight: 1.5,
     },
     button: {
-      color: 'inherit',
       fontSize: 16,
+      fontWeight: 400,
+      lineHeight: 1.5,
       textTransform: 'capitalize',
     },
     caption: {

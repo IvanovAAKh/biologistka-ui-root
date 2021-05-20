@@ -13,6 +13,7 @@ import {
 import IntlProvider from 'components/IntlProvider';
 import Header from 'components/Header';
 import PageMain from 'pageProviders/Main';
+import TokenUpdater from 'components/TokenUpdater';
 import MUI_THEME from 'constants/muiTheme';
 import * as PAGES from 'constants/pages';
 import useActions from 'hooks/useActions';
@@ -32,6 +33,7 @@ export default () => {
     <ThemeProvider theme={createMuiTheme(MUI_THEME)}>
       <Router>
         <IntlProvider>
+          <TokenUpdater />
           <Header />
           <Switch>
             <Route path={PAGES.MAIN}>

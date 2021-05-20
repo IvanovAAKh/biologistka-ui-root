@@ -4,13 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import Button from 'components/Button';
+import IconButton from 'components/IconButton';
 import IconMenu from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Slide from '@material-ui/core/Slide';
 
+import Dialog from 'components/Dialog';
+import DialogContent from 'components/DialogContent';
+import DialogTitle from 'components/DialogTitle';
 import Logo from 'components/Logo';
 import LeftNavBar from 'components/LeftNavBar';
 import Typography from 'components/Typography';
@@ -20,6 +23,7 @@ import useUser from 'hooks/useUser';
 import * as COLORS from 'constants/colors';
 import * as LANGUAGES from 'constants/languages';
 import * as userActions from 'app/actions/user';
+import AuthorizationForm from 'components/AuthorizationForm';
 
 const getClasses = makeStyles(theme => ({
   container: {
@@ -75,6 +79,7 @@ const Header = () => {
   const [leftMenuOptions, setLeftMenuOptions] = useState({
     opened: false,
   });
+  const [authDialogOpened, setAuthDialogOpened] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(lang);
   const history = useHistory();
   const scrollTrigger = useScrollTrigger({threshold: 48});
@@ -84,6 +89,7 @@ const Header = () => {
     fetchSignOut,
   } = useActions(userActions);
   const user = useUser();
+  console.log(user);
   return (
     <Slide
       appear={false}
@@ -116,10 +122,7 @@ const Header = () => {
         <div className={classes.toolBarContainerRight}>
           {!user.isAuthorised && (
             <Button
-              onClick={() => fetchSignIn({
-                login: 'loh',
-                password: 'huy',
-              })}
+              onClick={() => setAuthDialogOpened(true)}
               size="small"
             >
               <Typography variant="button">
@@ -127,13 +130,25 @@ const Header = () => {
               </Typography>
             </Button>
           )}
+          {authDialogOpened && (
+            <Dialog
+              onClose={() => setAuthDialogOpened(false)}
+            >
+              <DialogTitle
+                onClose={() => setAuthDialogOpened(false)}
+              />
+              <DialogContent>
+                <AuthorizationForm />
+              </DialogContent>
+            </Dialog>
+          )}
           {user.isAuthorised && (
             <Button
               onClick={() => fetchSignOut()}
               size="small"
             >
               <Typography variant="button">
-                {user.email}
+                {user.firstName || user.login}
               </Typography>
             </Button>
           )}
