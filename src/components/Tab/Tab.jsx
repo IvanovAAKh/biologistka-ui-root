@@ -22,7 +22,7 @@ const Tab = ({
   ...props
 }) => {
   const classes = getClasses();
-  console.log(selected);
+
   return (
     <TabMUI
       {...props}
@@ -46,6 +46,7 @@ const Tab = ({
 
 Tab.propTypes = {
   label: PropTypes.string,
+  selected: PropTypes.bool,
   value: PropTypes.string,
 };
 

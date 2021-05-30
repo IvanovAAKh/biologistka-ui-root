@@ -8,7 +8,7 @@ import React from 'react';
 
 const getClasses = makeStyles(() => ({
   root: {
-    padding: '0px 16px 16px 16px',
+    padding: '0px',
   },
 }));
 

@@ -133,6 +133,7 @@ const Header = () => {
           {authDialogOpened && (
             <Dialog
               onClose={() => setAuthDialogOpened(false)}
+              width="small"
             >
               <DialogTitle
                 onClose={() => setAuthDialogOpened(false)}

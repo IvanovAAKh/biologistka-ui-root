@@ -3,8 +3,10 @@
   "fetch.loading": "Loading...",
   "login": "Login",
   "page.MAIN": "Main",
-  "register": "Register",
+  "password": "Password",
   "section.ABOUT_ME": "About me",
   "section.WORKBOOKS": "Workbooks",
-  "section.CONTACTS": "Contacts"
+  "section.CONTACTS": "Contacts",
+  "signIn": "Sign in",
+  "signUp": "Sign up"
 }

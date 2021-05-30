@@ -102,6 +102,7 @@ export const fetchSignIn = ({
         password,
       }).then((user) => {
         localStorage.setItem('token', user.token);
+        localStorage.setItem('tokenRefreshKey', user.tokenRefreshKey);
         dispatch(receiveUser(user));
       }).catch(errors => dispatch(errorReceiveUser(errors)));
     });
@@ -156,7 +157,7 @@ const successUpdateToken = payload => ({
 });
 
 const updateToken = ({
-  clientId,
+  refreshTokenKey,
 }) => {
   const {
     BASE_URL,
@@ -165,7 +166,7 @@ const updateToken = ({
 
   return postJson({
     body: {
-      clientId,
+      refreshTokenKey,
     },
     url: `${BASE_URL}${USERS_SERVICE}/updateToken`,
   });
@@ -174,15 +175,18 @@ const updateToken = ({
 export const fetchUpdateToken = () => (dispatch) => {
   dispatch(requestUpdateToken());
   return updateToken({
-    clientId: localStorage.getItem('clientId'),
+    refreshTokenKey: localStorage.getItem('tokenRefreshKey'),
   }).then((response) => {
     const {
       token,
+      tokenRefreshKey,
     } = response;
     localStorage.setItem('token', token);
+    localStorage.setItem('tokenRefreshKey', tokenRefreshKey);
     dispatch(successUpdateToken(response));
   }).catch((errors) => {
     localStorage.removeItem('token');
+    localStorage.removeItem('tokenRefreshKey');
     dispatch(errorUpdateToken(errors));
   });
 };
