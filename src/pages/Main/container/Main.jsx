@@ -22,10 +22,11 @@ const Main = ({
   console.log('Render: ', myVar);
   return (
     <>
-      {(() => {
-        console.log('DOM render: ', myVar);
-        return myVar;
-      })()}
+      {Array.from(new Array(100).keys()).map(key => (
+        <div>
+          {key}
+        </div>
+      ))}
       <button onClick={() => setMyVar(myVar + 1)}>asd</button>
       {isFetching &&
         <div>

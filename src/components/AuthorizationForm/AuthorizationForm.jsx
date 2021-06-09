@@ -11,8 +11,7 @@ import Tabs from 'components/Tabs';
 import TabsContent from 'components/TabsContent';
 import TextField from 'components/TextField';
 import Typography from 'components/Typography';
-import useScreenSize from 'hooks/useScreenSize';
-import * as screenSizes from 'constants/screenSizes';
+import useIsMobile from 'hooks/useIsMobile/index';
 
 const getClasses = makeStyles(theme => ({
   container: {
@@ -51,11 +50,7 @@ const AVAILABLE_TABS = {
 
 const AuthorizationForm = () => {
   const classes = getClasses();
-  const screenSize = useScreenSize();
-  const isMobile = [
-    screenSizes.SMALL,
-    screenSizes.MEDIUM,
-  ].includes(screenSize);
+  const isMobile = useIsMobile();
 
   const [selectedTab, setSelectedTab] = useState(AVAILABLE_TABS.login);
   const [login, setLogin] = useState('');

@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import * as SCREEN_SIZES from 'constants/screenSizes';
+import {
+  SCREEN as SCREEN_SIZES,
+} from 'constants/sizes';
+
+// 1 -> 99 (ascending) sorting
+const sortedScreenSizes = Object
+  .entries(SCREEN_SIZES)
+  .sort(([, value1], [, value2]) => value1 - value2);
 
 const getScreenSize = () => {
   const screenWidth = window.innerWidth;
-  if (screenWidth > 0 && screenWidth <= 320) {
-    return SCREEN_SIZES.SMALL;
-  }
-  if (screenWidth > 320 && screenWidth < 1024) {
-    return SCREEN_SIZES.MEDIUM;
-  }
-  return SCREEN_SIZES.LARGE
+  const [screenSizeType] = sortedScreenSizes.find(([, value]) => value >= screenWidth);
+
+  return screenSizeType;
 };
 
 const useScreenSize = () => {

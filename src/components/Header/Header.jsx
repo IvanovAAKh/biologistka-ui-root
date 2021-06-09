@@ -3,43 +3,45 @@ import { useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
-import Button from 'components/Button';
-import IconButton from 'components/IconButton';
 import IconMenu from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Slide from '@material-ui/core/Slide';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
+import Button from 'components/Button';
 import Dialog from 'components/Dialog';
 import DialogContent from 'components/DialogContent';
 import DialogTitle from 'components/DialogTitle';
+import IconButton from 'components/IconButton';
 import Logo from 'components/Logo';
-import LeftNavBar from 'components/LeftNavBar';
+import LeftNavPanel from 'components/LeftNavPanel';
 import Typography from 'components/Typography';
 import useActions from 'hooks/useActions';
 import useLocationSearch from 'hooks/useLocationSearch';
+import useScreenSize from 'hooks/useScreenSize';
 import useUser from 'hooks/useUser';
 import * as COLORS from 'constants/colors';
 import * as LANGUAGES from 'constants/languages';
 import * as userActions from 'app/actions/user';
 import AuthorizationForm from 'components/AuthorizationForm';
+import * as screenSizeTypes from "constants/screenSizeTypes";
+import {
+  HEADER_HEIGHT,
+} from 'constants/sizes';
 
 const getClasses = makeStyles(theme => ({
   container: {
     alignItems: 'center',
-    background: COLORS.GOLDEN._10,
+    background: COLORS.BEIGE._100,
     display: 'flex',
     justifyContent: 'space-between',
-    height: '48px',
-    paddingLeft: `${theme.spacing(2)}px`,
-    paddingRight: `${theme.spacing(2)}px`,
+    maxHeight: `${HEADER_HEIGHT - 16}px`,
+    padding: '8px 16px',
     position: 'sticky',
     top: 0,
   },
-  iconButtonContainer: {
-    marginLeft: `-${theme.spacing(2)}px`,
-  },
+  iconButtonContainer: {},
   icon: {
     alignItems: 'center',
     display: 'flex',
@@ -76,20 +78,22 @@ const Header = () => {
   const {
     lang,
   } = locationSearch;
-  const [leftMenuOptions, setLeftMenuOptions] = useState({
-    opened: false,
-  });
-  const [authDialogOpened, setAuthDialogOpened] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(lang);
   const history = useHistory();
-  const scrollTrigger = useScrollTrigger({threshold: 48});
+  const scrollTrigger = useScrollTrigger({threshold: 8});
   const { formatMessage } = useIntl();
   const {
     fetchSignIn,
     fetchSignOut,
   } = useActions(userActions);
   const user = useUser();
-  console.log(user);
+  const screenSize = useScreenSize();
+
+  const [leftMenuOptions, setLeftMenuOptions] = useState({
+    opened: false,
+  });
+  const [authDialogOpened, setAuthDialogOpened] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(lang);
+
   return (
     <Slide
       appear={false}
@@ -98,23 +102,36 @@ const Header = () => {
     >
       <div className={classes.container}>
         <div className={classes.toolBarContainerLeft}>
-          <div className={classes.iconButtonContainer}>
-            <IconButton
-              onClick={() => setLeftMenuOptions({
-                ...leftMenuOptions,
-                opened: true,
-              })}
-            >
-              <IconMenu className={classes.icon} />
-            </IconButton>
-            <LeftNavBar
-              opened={leftMenuOptions.opened}
-              onClose={() => setLeftMenuOptions({
-                ...leftMenuOptions,
-                opened: false,
-              })}
-            />
-          </div>
+          {[
+            screenSizeTypes.EXTRA_SMALL,
+            screenSizeTypes.SMALL,
+            screenSizeTypes.MEDIUM,
+          ].includes(screenSize) && (
+            <div className={classes.iconButtonContainer}>
+              <IconButton
+                onClick={() => setLeftMenuOptions({
+                  ...leftMenuOptions,
+                  opened: true,
+                })}
+              >
+                <IconMenu className={classes.icon} />
+              </IconButton>
+              <SwipeableDrawer
+                anchor="left"
+                disableSwipeToOpen
+                disableDiscovery
+                disableBackdropTransition
+                open={leftMenuOptions.opened}
+                onClose={() => setLeftMenuOptions({
+                  ...leftMenuOptions,
+                  opened: false,
+                })}
+                onOpen={() => {}}
+              >
+                <LeftNavPanel />
+              </SwipeableDrawer>
+            </div>
+          )}
           <div className={classes.paddingLeft2x}>
             <Logo />
           </div>

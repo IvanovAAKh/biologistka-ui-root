@@ -1,23 +1,24 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Footer from 'components/Footer';
+import LeftNavPanel from 'components/LeftNavPanel';
+import useIsMobile from 'hooks/useIsMobile';
 import useScreenSize from 'hooks/useScreenSize';
 import * as COLORS from 'constants/colors';
-import * as SCREEN_SIZES from 'constants/screenSizes';
+import * as screenSizeTypes from 'constants/screenSizeTypes';
+import {
+  CONTENT_PANEL_WIDTH,
+  HEADER_HEIGHT,
+  LEFT_NAV_PANEL_WIDTH,
+} from 'constants/sizes';
 
 const getClasses = makeStyles((theme) => ({
   container: {
-    alignItems: 'center',
-    background: COLORS.GRAY,
+    justifyContent: 'center',
+    background: COLORS.BEIGE._100,
     display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    paddingTop: `${theme.spacing(2)}px`
+    // minHeight: '100%',
   },
   contentContainer: {
     background: COLORS.WHITE,
@@ -28,7 +29,17 @@ const getClasses = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    width: '1024px',
+    minWidth: `${CONTENT_PANEL_WIDTH}px`,
+    width: `${CONTENT_PANEL_WIDTH}px`,
+  },
+  leftNavPanel: {
+    height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+    width: `${LEFT_NAV_PANEL_WIDTH}px`,
+  },
+  footerContainer: {
+    alignItems: 'flex-end',
+    display: 'flex',
+    height: '100%',
   },
   fullWidthContentContainer: {
     background: COLORS.WHITE,
@@ -48,19 +59,28 @@ const PagesContainer = ({
   fullWidth,
 }) => {
   const classes = getClasses();
+  const isMobile = useIsMobile();
   const screenSize = useScreenSize();
-  let contentContainerClass = classes.contentContainer;
-  if (fullWidth || [
-    SCREEN_SIZES.SMALL,
-    SCREEN_SIZES.MEDIUM
-  ].includes(screenSize)) {
-    contentContainerClass = classes.fullWidthContentContainer;
-  }
+
   return (
     <div className={classes.container}>
-      <div className={contentContainerClass}>
-        <div className={classes.content}>
-          {children}
+      {![
+        screenSizeTypes.EXTRA_SMALL,
+        screenSizeTypes.SMALL,
+        screenSizeTypes.MEDIUM,
+      ].includes(screenSize) && (
+        <div className={classes.leftNavPanel}>
+          <LeftNavPanel />
+        </div>
+      )}
+      <div
+        className={(fullWidth || isMobile)
+          ? classes.fullWidthContentContainer
+          : classes.contentContainer}
+      >
+        {children}
+        <div className={classes.footerContainer}>
+          <Footer />
         </div>
       </div>
     </div>
