@@ -5,6 +5,7 @@ import React from 'react';
 
 const getClasses = makeStyles(() => ({
   root: {
+    boxShadow: '0px 0px 6px 0px rgb(34 60 80 / 12%)',
     padding: '8px',
   },
 }));

@@ -11,12 +11,21 @@ import Tabs from 'components/Tabs';
 import TabsContent from 'components/TabsContent';
 import TextField from 'components/TextField';
 import Typography from 'components/Typography';
+import useScreenSize from 'hooks/useScreenSize';
+import * as screenSizes from 'constants/screenSizes';
 
 const getClasses = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  flex: {
+    display: 'flex',
+  },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   fullWidth: {
     width: '100%',
@@ -26,6 +35,9 @@ const getClasses = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: '24px',
+  },
+  paddingLeft3x: {
+    paddingLeft: '24px',
   },
   paddingTop3x: {
     paddingTop: '24px',
@@ -39,6 +51,11 @@ const AVAILABLE_TABS = {
 
 const AuthorizationForm = () => {
   const classes = getClasses();
+  const screenSize = useScreenSize();
+  const isMobile = [
+    screenSizes.SMALL,
+    screenSizes.MEDIUM,
+  ].includes(screenSize);
 
   const [selectedTab, setSelectedTab] = useState(AVAILABLE_TABS.login);
   const [login, setLogin] = useState('');
@@ -70,37 +87,48 @@ const AuthorizationForm = () => {
       <TabsContent value={selectedTab}>
         <TabContent value={AVAILABLE_TABS.login}>
           <div className={classes.tabContent}>
-            <TextField
-              autoFocus
-              label={formatMessage({
-                id: 'login',
-              })}
-              onChange={({ target }) => setLogin(target.value)}
-              value={login}
-            />
             <div
               className={classNames(
                 classes.fullWidth,
-                classes.paddingTop3x,
+                isMobile
+                  ? classes.flexColumn
+                  : classes.flex,
               )}
             >
               <TextField
-                AdornmentEnd={(
-                  <IconButton
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  >
-                    {isPasswordVisible
-                      ? (<IconVisibility />)
-                      : (<IconVisibilityOff />)}
-                  </IconButton>
-                )}
-                inputType={isPasswordVisible ? 'text' : 'password'}
+                autoFocus
                 label={formatMessage({
-                  id: 'password',
+                  id: 'login',
                 })}
-                onChange={({ target }) => setPassword(target.value)}
-                value={password}
+                onChange={({ target }) => setLogin(target.value)}
+                value={login}
               />
+              <div
+                className={classNames(
+                  classes.fullWidth,
+                  isMobile
+                    ? classes.paddingTop3x
+                    : classes.paddingLeft3x,
+                )}
+              >
+                <TextField
+                  AdornmentEnd={(
+                    <IconButton
+                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    >
+                      {isPasswordVisible
+                        ? (<IconVisibility size={24} />)
+                        : (<IconVisibilityOff size={24} />)}
+                    </IconButton>
+                  )}
+                  inputType={isPasswordVisible ? 'text' : 'password'}
+                  label={formatMessage({
+                    id: 'password',
+                  })}
+                  onChange={({ target }) => setPassword(target.value)}
+                  value={password}
+                />
+              </div>
             </div>
           </div>
         </TabContent>

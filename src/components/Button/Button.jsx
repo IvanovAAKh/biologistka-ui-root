@@ -7,7 +7,8 @@ import React from 'react';
 const getClasses = makeStyles(theme => ({
   root: {
     // borderBottom: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: '8px',
+    borderRadius: '4px',
+    boxShadow: '0px 0px 6px 0px rgb(34 60 80 / 12%)',
   },
 }));
 

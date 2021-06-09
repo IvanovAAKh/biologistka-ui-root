@@ -46,7 +46,7 @@ const DialogTitle = ({
         { onClose && (
           <div className={classes.buttonContainer}>
             <IconButton onClick={onClose}>
-              <IconClose />
+              <IconClose size={24} />
             </IconButton>
           </div>
         )}

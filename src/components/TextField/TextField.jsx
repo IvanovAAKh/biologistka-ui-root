@@ -9,10 +9,10 @@ import React from 'react';
 
 const getClasses = makeStyles(theme => ({
   adornmentEnd: {
-    padding: '0px 0px 12px 8px',
+    padding: '0px 0px 8px 8px',
   },
   adornmentStart: {
-    padding: '0px 8px 12px 0px',
+    padding: '0px 8px 8px 0px',
   },
 }));
 
