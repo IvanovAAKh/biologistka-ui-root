@@ -22,7 +22,7 @@ const Main = ({
   console.log('Render: ', myVar);
   return (
     <>
-      {Array.from(new Array(100).keys()).map(key => (
+      {Array.from(new Array(150).keys()).map(key => (
         <div>
           {key}
         </div>

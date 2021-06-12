@@ -13,17 +13,17 @@ export default {
       main: COLORS.BROWN._30,
     },
     primary: {
-      main: COLORS.BROWN._100,
+      main: COLORS.PRIMARY.main,
     },
     secondary: {
-      main: COLORS.GOLDEN._100,
+      main: COLORS.SECONDARY.main,
     },
     tertiary: {
-      main: COLORS.GOLDEN._20,
+      main: COLORS.TERTIARY.main,
     },
     text: {
       primary: COLORS.BROWN._100,
-      secondary: COLORS.BROWN._50,
+      secondary: COLORS.BROWN._30,
       tertiary: COLORS.GOLDEN._100,
     },
   },

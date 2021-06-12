@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const getClasses = makeStyles(theme => ({
+import * as COLORS from 'constants/colors';
+
+const getClasses = makeStyles(() => ({
   container: {
-    background: theme.palette.tertiary.main,
+    // background: COLORS.TERTIARY.contrast,
     display: 'flex',
     flexDirection: 'column',
   },

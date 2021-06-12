@@ -28,6 +28,21 @@ export const BEIGE = {
   _100: '#f6efe6',
 };
 
+export const PRIMARY = {
+  contrast: BEIGE._100,
+  main: BROWN._100,
+};
+
+export const SECONDARY = {
+  contrast: BROWN._10,
+  main: BROWN._50,
+};
+
+export const TERTIARY = {
+  contrast: GOLDEN._10,
+  main: GOLDEN._100,
+};
+
 export const GRAY = '#F0F0F0';
 export const WHITE = '#FFFFFF';
 

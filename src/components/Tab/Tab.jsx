@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TabMUI from '@material-ui/core/Tab';
 import Typography from '../Typography';
-
-const getClasses = makeStyles(theme => ({
+import * as COLORS from 'constants/colors';
+const getClasses = makeStyles(() => ({
   root: {
     opacity: 1,
   },
   selected: {
-    background: theme.palette.tertiary.main,
+    background: COLORS.PRIMARY.contrast,
   },
 }));
 

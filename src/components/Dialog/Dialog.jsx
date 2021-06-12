@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const widthMapping = {
+  extraSmall: 'xs',
   medium: 'md',
   small: 'sm',
   large: 'lg',
@@ -26,6 +27,7 @@ const Dialog = ({
 Dialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   width: PropTypes.oneOf([
+    'extraSmall',
     'small',
     'medium',
     'large',

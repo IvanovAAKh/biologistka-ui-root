@@ -16,9 +16,8 @@ import {
 const getClasses = makeStyles((theme) => ({
   container: {
     justifyContent: 'center',
-    background: COLORS.BEIGE._100,
+    background: COLORS.PRIMARY.contrast,
     display: 'flex',
-    // minHeight: '100%',
   },
   contentContainer: {
     background: COLORS.WHITE,
@@ -34,7 +33,13 @@ const getClasses = makeStyles((theme) => ({
   },
   leftNavPanel: {
     height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-    width: `${LEFT_NAV_PANEL_WIDTH}px`,
+    position: 'fixed',
+  },
+  leftNavPanelContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: '0px 8px',
+    width: `${LEFT_NAV_PANEL_WIDTH - 16}px`,
   },
   footerContainer: {
     alignItems: 'flex-end',
@@ -69,8 +74,10 @@ const PagesContainer = ({
         screenSizeTypes.SMALL,
         screenSizeTypes.MEDIUM,
       ].includes(screenSize) && (
-        <div className={classes.leftNavPanel}>
-          <LeftNavPanel />
+        <div className={classes.leftNavPanelContainer}>
+          <div className={classes.leftNavPanel}>
+            <LeftNavPanel />
+          </div>
         </div>
       )}
       <div

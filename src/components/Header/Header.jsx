@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import IconMenu from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Slide from '@material-ui/core/Slide';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 import Button from 'components/Button';
@@ -33,7 +31,7 @@ import {
 const getClasses = makeStyles(theme => ({
   container: {
     alignItems: 'center',
-    background: COLORS.BEIGE._100,
+    background: COLORS.TERTIARY.contrast,
     display: 'flex',
     justifyContent: 'space-between',
     maxHeight: `${HEADER_HEIGHT - 16}px`,
@@ -79,7 +77,6 @@ const Header = () => {
     lang,
   } = locationSearch;
   const history = useHistory();
-  const scrollTrigger = useScrollTrigger({threshold: 8});
   const { formatMessage } = useIntl();
   const {
     fetchSignIn,
@@ -95,113 +92,107 @@ const Header = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(lang);
 
   return (
-    <Slide
-      appear={false}
-      direction="down"
-      in={!scrollTrigger}
-    >
-      <div className={classes.container}>
-        <div className={classes.toolBarContainerLeft}>
-          {[
-            screenSizeTypes.EXTRA_SMALL,
-            screenSizeTypes.SMALL,
-            screenSizeTypes.MEDIUM,
-          ].includes(screenSize) && (
-            <div className={classes.iconButtonContainer}>
-              <IconButton
-                onClick={() => setLeftMenuOptions({
-                  ...leftMenuOptions,
-                  opened: true,
-                })}
-              >
-                <IconMenu className={classes.icon} />
-              </IconButton>
-              <SwipeableDrawer
-                anchor="left"
-                disableSwipeToOpen
-                disableDiscovery
-                disableBackdropTransition
-                open={leftMenuOptions.opened}
-                onClose={() => setLeftMenuOptions({
-                  ...leftMenuOptions,
-                  opened: false,
-                })}
-                onOpen={() => {}}
-              >
-                <LeftNavPanel />
-              </SwipeableDrawer>
-            </div>
-          )}
-          <div className={classes.paddingLeft2x}>
-            <Logo />
+    <div className={classes.container}>
+      <div className={classes.toolBarContainerLeft}>
+        {[
+          screenSizeTypes.EXTRA_SMALL,
+          screenSizeTypes.SMALL,
+          screenSizeTypes.MEDIUM,
+        ].includes(screenSize) && (
+          <div className={classes.iconButtonContainer}>
+            <IconButton
+              onClick={() => setLeftMenuOptions({
+                ...leftMenuOptions,
+                opened: true,
+              })}
+            >
+              <IconMenu className={classes.icon} />
+            </IconButton>
+            <SwipeableDrawer
+              anchor="left"
+              disableSwipeToOpen
+              disableDiscovery
+              disableBackdropTransition
+              open={leftMenuOptions.opened}
+              onClose={() => setLeftMenuOptions({
+                ...leftMenuOptions,
+                opened: false,
+              })}
+              onOpen={() => {}}
+            >
+              <LeftNavPanel />
+            </SwipeableDrawer>
           </div>
-        </div>
-        <div className={classes.toolBarContainerRight}>
-          {!user.isAuthorised && (
-            <Button
-              onClick={() => setAuthDialogOpened(true)}
-              size="small"
-            >
-              <Typography variant="button">
-                {formatMessage({ id: 'login' })}
-              </Typography>
-            </Button>
-          )}
-          {authDialogOpened && (
-            <Dialog
-              onClose={() => setAuthDialogOpened(false)}
-              width="small"
-            >
-              <DialogTitle
-                onClose={() => setAuthDialogOpened(false)}
-              />
-              <DialogContent>
-                <AuthorizationForm />
-              </DialogContent>
-            </Dialog>
-          )}
-          {user.isAuthorised && (
-            <Button
-              onClick={() => fetchSignOut()}
-              size="small"
-            >
-              <Typography variant="button">
-                {user.firstName || user.login}
-              </Typography>
-            </Button>
-          )}
-          <div className={classes.paddingLeft}>
-            <Select
-              focusable={false}
-              value={selectedLanguage}
-              onChange={({ target }) => {
-                setSelectedLanguage(target.value);
-                history.replace({
-                  pathname: history.location.pathname,
-                  search: `?${new URLSearchParams({
-                    ...locationSearch,
-                    lang: target.value,
-                  }).toString()}`,
-                });
-              }}
-            >
-              {Object
-                .keys(LANGUAGES)
-                .map(langCode => (
-                  <MenuItem
-                    key={langCode}
-                    value={langCode}
-                  >
-                    <Typography color="textPrimary">
-                      {INTERFACE_LANGUAGES[langCode]}
-                    </Typography>
-                  </MenuItem>
-                ))}
-            </Select>
-          </div>
+        )}
+        <div className={classes.paddingLeft2x}>
+          <Logo />
         </div>
       </div>
-    </Slide>
+      <div className={classes.toolBarContainerRight}>
+        {!user.isAuthorised && (
+          <Button
+            onClick={() => setAuthDialogOpened(true)}
+            size="small"
+          >
+            <Typography variant="button">
+              {formatMessage({ id: 'login' })}
+            </Typography>
+          </Button>
+        )}
+        {authDialogOpened && (
+          <Dialog
+            onClose={() => setAuthDialogOpened(false)}
+            width="extraSmall"
+          >
+            <DialogTitle
+              onClose={() => setAuthDialogOpened(false)}
+            />
+            <DialogContent>
+              <AuthorizationForm />
+            </DialogContent>
+          </Dialog>
+        )}
+        {user.isAuthorised && (
+          <Button
+            onClick={() => fetchSignOut()}
+            size="small"
+          >
+            <Typography variant="button">
+              {user.firstName || user.login}
+            </Typography>
+          </Button>
+        )}
+        <div className={classes.paddingLeft}>
+          <Select
+            focusable={false}
+            value={selectedLanguage}
+            onChange={({ target }) => {
+              setSelectedLanguage(target.value);
+              history.replace({
+                pathname: history.location.pathname,
+                search: `?${new URLSearchParams({
+                  ...locationSearch,
+                  lang: target.value,
+                }).toString()}`,
+              });
+            }}
+          >
+            {Object
+              .keys(LANGUAGES)
+              .map(langCode => (
+                <MenuItem
+                  key={langCode}
+                  value={langCode}
+                >
+                  <Typography color="textPrimary">
+                    {INTERFACE_LANGUAGES[langCode]}
+                  </Typography>
+                </MenuItem>
+              ))}
+          </Select>
+        </div>
+      </div>
+    </div>
   )
 };
 

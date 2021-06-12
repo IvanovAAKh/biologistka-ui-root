@@ -85,9 +85,7 @@ const AuthorizationForm = () => {
             <div
               className={classNames(
                 classes.fullWidth,
-                isMobile
-                  ? classes.flexColumn
-                  : classes.flex,
+                classes.flexColumn,
               )}
             >
               <TextField
@@ -101,9 +99,7 @@ const AuthorizationForm = () => {
               <div
                 className={classNames(
                   classes.fullWidth,
-                  isMobile
-                    ? classes.paddingTop3x
-                    : classes.paddingLeft3x,
+                  classes.paddingTop3x,
                 )}
               >
                 <TextField

@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Typography from 'components/Typography';
 
 const getClasses = makeStyles(theme => ({
   adornmentEnd: {
@@ -34,7 +35,9 @@ const TextField = ({
       fullWidth
     >
       <InputLabel>
-        {label}
+        <Typography color="secondary">
+          {label}
+        </Typography>
       </InputLabel>
       <Input
         autoFocus={autoFocus}
