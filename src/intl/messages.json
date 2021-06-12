@@ -1,5 +1,12 @@
 {
-  "fetch.errorOccurred": "Some error occurred during loading process.",
+  "cancel": "Cancel",
+  "email": "Email",
+  "error.emptyLogin": "\"Email\" field can't be empty",
+  "error.emptyPassword": "\"Password\" field can't be empty",
+  "error.internal": "Some internal error occurred",
+  "error.isNotEmail": "Wrong email format",
+  "error.wrongLoginOrPassword": "Wrong email or password",
+  "fetch.errorOccurred": "Some internal error occurred during loading process.",
   "fetch.loading": "Loading...",
   "login": "Login",
   "page.MAIN": "Main",

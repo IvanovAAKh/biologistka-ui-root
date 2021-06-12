@@ -24,6 +24,8 @@ export const GOLDEN = {
   _10: '#fbfaf8',
 };
 
+export const ERROR_TEXT = '#FF0000';
+
 export const BEIGE = {
   _100: '#f6efe6',
 };

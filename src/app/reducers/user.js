@@ -119,7 +119,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         errors: initialState.errors,
-        isFailedFetchUser: true,
+        isFailedFetchUser: false,
         isFetchingUser: true,
       };
     }

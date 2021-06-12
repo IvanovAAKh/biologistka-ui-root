@@ -2,8 +2,12 @@ import {makeStyles, useTheme} from '@material-ui/core/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import TypographyMUI from '@material-ui/core/Typography';
+import * as COLORS from 'constants/colors';
 
 const getClasses = makeStyles(theme => ({
+  error: {
+    color: COLORS.ERROR_TEXT,
+  },
   primary: {
     color: theme.palette.text.primary,
   },
@@ -35,6 +39,7 @@ const Typography = ({
 
 Typography.propTypes = {
   color: PropTypes.oneOf([
+    'error',
     'primary',
     'secondary',
     'tertiary',

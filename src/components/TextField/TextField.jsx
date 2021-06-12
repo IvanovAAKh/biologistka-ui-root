@@ -70,7 +70,12 @@ const TextField = ({
       />
       {helperText && (
         <FormHelperText>
-          {helperText}
+          <Typography
+            color={isError ? 'error' : 'primary'}
+            variant="caption"
+          >
+            {helperText}
+          </Typography>
         </FormHelperText>
       )}
     </FormControl>
