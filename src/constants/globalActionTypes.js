@@ -1,0 +1,2 @@
+export const ERROR_REFRESH_TOKEN = 'ERROR_REFRESH_TOKEN';
+export const WRONG_TOKEN = 'WRONG_TOKEN';

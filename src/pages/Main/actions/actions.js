@@ -6,7 +6,7 @@ import {
 
 import {
   postJson
-} from 'utils/requests';
+} from 'requests';
 import config from 'config';
 
 export const errorReceive = () => ({

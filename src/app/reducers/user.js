@@ -1,13 +1,22 @@
 import {
+  ERROR_REFRESH_TOKEN,
+  WRONG_TOKEN,
+} from 'constants/globalActionTypes';
+
+import {
+  CLEAR_ERRORS,
   ERROR_RECEIVE_USER,
+  ERROR_SIGN_IN,
   ERROR_SIGN_OUT,
-  ERROR_UPDATE_TOKEN,
+  ERROR_SIGN_UP,
   RECEIVE_USER,
   REQUEST_SIGN_OUT,
-  REQUEST_UPDATE_TOKEN,
+  REQUEST_SIGN_IN,
+  REQUEST_SIGN_UP,
   REQUEST_USER,
+  SUCCESS_SIGN_IN,
   SUCCESS_SIGN_OUT,
-  SUCCESS_UPDATE_TOKEN,
+  SUCCESS_SIGN_UP,
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -17,59 +26,64 @@ const initialState = {
   firstName: '',
   isAuthorised: false,
   isFailedFetchUser: false,
+  isFailedSignUp: false,
   isFailedSignOut: false,
-  isFailedUpdateToken: false,
-  isFetchingUpdateToken: false,
   isFetchingUser: false,
   isFetchingSignOut: false,
+  isFetchingSignUp: false,
   lastName: '',
   login: '',
   phone: '',
-  tokenExpirationTime: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case ERROR_RECEIVE_USER: {
-      const {
-        errors,
-      } = action;
-
+    case CLEAR_ERRORS: {
       return {
         ...state,
-        errors,
+        errors: initialState.errors,
+        isFailedFetchUser: false,
+        isFailedSignUp: false,
+        isFailedSignOut: false,
+        isFailedUpdateToken: false,
+      };
+    }
+
+    case WRONG_TOKEN:
+    case ERROR_REFRESH_TOKEN: {
+      return initialState;
+    }
+
+    case ERROR_RECEIVE_USER:
+    case ERROR_SIGN_IN: {
+      return {
+        ...state,
+        errors: action.payload,
         isFailedFetchUser: true,
         isFetchingUser: false,
       };
     }
 
     case ERROR_SIGN_OUT: {
-      const {
-        errors,
-      } = action;
-
       return {
         ...state,
-        errors,
+        errors: action.payload,
         isFailedSignOut: true,
         isFetchingSignOut: false,
       };
     }
 
-    case ERROR_UPDATE_TOKEN: {
-      const {
-        errors,
-      } = action;
-
+    case ERROR_SIGN_UP: {
       return {
-        ...initialState,
-        errors,
-        isFailedUpdateToken: true,
-        isFetchingUpdateToken: false,
+        ...state,
+        errors: action.payload,
+        isFailedSignUp: true,
+        isFetchingSignUp: false,
       };
     }
 
-    case RECEIVE_USER: {
+    case RECEIVE_USER:
+    case SUCCESS_SIGN_IN: {
       const {
         authorities,
         email,
@@ -77,8 +91,7 @@ export default (state = initialState, action) => {
         lastName,
         login,
         phone,
-        tokenExpirationTime,
-      } = action.user;
+      } = action.payload;
 
       return {
         ...state,
@@ -92,8 +105,6 @@ export default (state = initialState, action) => {
         lastName: lastName || initialState.lastName,
         login: login || initialState.login,
         phone: phone || initialState.phone,
-        tokenExpirationTime: tokenExpirationTime
-          || initialState.tokenExpirationTime,
       };
     }
 
@@ -106,15 +117,16 @@ export default (state = initialState, action) => {
       };
     }
 
-    case REQUEST_UPDATE_TOKEN: {
+    case REQUEST_SIGN_UP: {
       return {
         ...state,
         errors: initialState.errors,
-        isFailedUpdateToken: false,
-        isFetchingUpdateToken: true,
+        isFailedSignUp: false,
+        isFetchingSignUp: true,
       };
     }
 
+    case REQUEST_SIGN_IN:
     case REQUEST_USER: {
       return {
         ...state,
@@ -128,17 +140,12 @@ export default (state = initialState, action) => {
       return initialState;
     }
 
-    case SUCCESS_UPDATE_TOKEN: {
-      const {
-        tokenExpirationTime,
-      } = action.payload;
-
+    case SUCCESS_SIGN_UP: {
       return {
         ...state,
         errors: initialState.errors,
-        isFailedUpdateToken: false,
-        isFetchingUpdateToken: false,
-        tokenExpirationTime,
+        isFailedSignUp: false,
+        isFetchingSignUp: false,
       };
     }
 
