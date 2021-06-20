@@ -19,6 +19,9 @@ const getClasses = makeStyles(() => ({
     '&:hover': {
       background: colors.LIST_ITEM.hovered,
     }
+  },
+  rippleClasses: {
+    background: colors.LIST_ITEM.touched,
   }
 }));
 
@@ -30,6 +33,7 @@ const ListItem = ({
   const classes = getClasses();
   return (
     <ListItemMUI
+      button={variant === 'button'}
       classes={{
         root: classNames(
           selected
@@ -38,7 +42,11 @@ const ListItem = ({
           selected && classes.selected,
         ),
       }}
-      button={variant === 'button'}
+      TouchRippleProps={{
+        classes: {
+          child: classes.rippleClasses,
+        },
+      }}
     >
       {children}
     </ListItemMUI>

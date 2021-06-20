@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -24,7 +25,9 @@ const Link = ({
    : InternalLink;
   return (
     <LinkComponent
-      className={!underline && classes.noUnderline}
+      className={classNames(
+        !underline && classes.noUnderline,
+      )}
       href={href}
       to={to}
     >

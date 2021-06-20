@@ -46,6 +46,7 @@ export const LIST_ITEM = {
   border: BROWN._50,
   hovered: '#f4ead9',
   selected: '#ece0ca',
+  touched: BROWN._30,
 };
 
 export const LEFT_NAV_PANEL = {
