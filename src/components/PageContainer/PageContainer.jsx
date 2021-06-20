@@ -16,12 +16,12 @@ import {
 const getClasses = makeStyles((theme) => ({
   container: {
     justifyContent: 'center',
-    background: COLORS.PRIMARY.contrast,
+    background: COLORS.PAGE_CONTAINER.background,
     display: 'flex',
   },
   contentContainer: {
-    background: COLORS.WHITE,
-    borderColor: COLORS.GOLDEN._50,
+    background: COLORS.PAGE_CONTENT.background,
+    borderColor: COLORS.PAGE_CONTENT.border,
     borderStyle: 'solid',
     borderWidth: '0px 1px 1px 1px',
     boxSizing: 'border-box',
@@ -38,8 +38,8 @@ const getClasses = makeStyles((theme) => ({
   leftNavPanelContainer: {
     display: 'flex',
     justifyContent: 'flex-end',
-    padding: '0px 8px',
-    width: `${LEFT_NAV_PANEL_WIDTH - 16}px`,
+    padding: '0px 16px',
+    width: `${LEFT_NAV_PANEL_WIDTH - 32}px`,
   },
   footerContainer: {
     alignItems: 'flex-end',

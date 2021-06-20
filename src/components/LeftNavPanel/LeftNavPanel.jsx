@@ -37,10 +37,10 @@ const getClasses = makeStyles(theme => ({
     backgroundPositionY: 'bottom',
     backgroundPositionX: 'center',
     backgroundRepeat: 'no-repeat',
-    height: '100%'
+    height: '100%',
   },
   leftNavPanel: {
-    background: COLORS.PRIMARY.contrast,
+    background: COLORS.LEFT_NAV_PANEL.background,
     display: 'flex',
     flexDirection: 'column',
     height: '100%',

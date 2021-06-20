@@ -31,7 +31,7 @@ import {
 const getClasses = makeStyles(theme => ({
   container: {
     alignItems: 'center',
-    background: COLORS.TERTIARY.contrast,
+    background: COLORS.HEADER,
     display: 'flex',
     justifyContent: 'space-between',
     maxHeight: `${HEADER_HEIGHT - 16}px`,
@@ -133,8 +133,12 @@ const Header = () => {
           <Button
             onClick={() => setAuthDialogOpened(true)}
             size="small"
+            variant="main"
           >
-            <Typography variant="button">
+            <Typography
+              color="inherit"
+              variant="button"
+            >
               {formatMessage({ id: 'login' })}
             </Typography>
           </Button>

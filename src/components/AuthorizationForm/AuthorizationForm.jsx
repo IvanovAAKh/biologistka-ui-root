@@ -295,7 +295,10 @@ const AuthorizationForm = ({
                       }}
                       variant="main"
                     >
-                      <Typography color="tertiary">
+                      <Typography
+                        color="inherit"
+                        variant="button"
+                      >
                         {formatMessage({ id: 'signIn' })}
                       </Typography>
                     </Button>
@@ -562,7 +565,10 @@ const AuthorizationForm = ({
                       }}
                       variant="main"
                     >
-                      <Typography color="tertiary">
+                      <Typography
+                        color="inherit"
+                        variant="button"
+                      >
                         {formatMessage({ id: 'signUp' })}
                       </Typography>
                     </Button>

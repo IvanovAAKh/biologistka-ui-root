@@ -26,6 +26,35 @@ export const GOLDEN = {
 
 export const ERROR_TEXT = '#FF0000';
 
+export const HEADER = '#282828';
+
+export const DEFAULT_BUTTON = {
+  background: '',
+  disabled: '',
+  hovered: '',
+  text: ''
+};
+
+export const MAIN_BUTTON = {
+  background: '#4cb417',
+  disabled: '#a2c98f',
+  hovered: '#44951b',
+  text: '#FFFFFF'
+};
+
+export const LEFT_NAV_PANEL = {
+  background: '#f6efe6',
+};
+
+export const PAGE_CONTENT = {
+  background: '#FFFFFF',
+  border: '#f6efe6',
+};
+
+export const PAGE_CONTAINER = {
+  background: '#f6efe6',
+};
+
 export const BEIGE = {
   _100: '#f6efe6',
 };
