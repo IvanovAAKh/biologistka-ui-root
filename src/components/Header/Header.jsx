@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import IconMenu from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -12,6 +11,7 @@ import Dialog from 'components/Dialog';
 import DialogContent from 'components/DialogContent';
 import DialogTitle from 'components/DialogTitle';
 import IconButton from 'components/IconButton';
+import IconMenu from 'components/icons/Menu';
 import Logo from 'components/Logo';
 import LeftNavPanel from 'components/LeftNavPanel';
 import Typography from 'components/Typography';
@@ -101,12 +101,13 @@ const Header = () => {
         ].includes(screenSize) && (
           <div className={classes.iconButtonContainer}>
             <IconButton
+              borderColor={null}
               onClick={() => setLeftMenuOptions({
                 ...leftMenuOptions,
                 opened: true,
               })}
             >
-              <IconMenu className={classes.icon} />
+              <IconMenu />
             </IconButton>
             <SwipeableDrawer
               anchor="left"

@@ -2,32 +2,19 @@ import React from 'react';
 import { useIntl } from "react-intl";
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import Avatar from '@material-ui/core/Avatar';
-import IconInstagram from '@material-ui/icons/Instagram';
-import IconMenuBook from '@material-ui/icons/MenuBook';
-import IconTelegram from '@material-ui/icons/Telegram';
 import Link from '@material-ui/core/Link';
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
 
+import Avatar from 'components/Avatar';
+import IconInstagram from 'components/icons/Instagram';
+import IconTelegram from 'components/icons/Telegram';
+import IconWorkbook from 'components/icons/Workbook';
+import List from 'components/List'
+import ListItem from 'components/ListItem'
 import Typography from 'components/Typography';
 import * as COLORS from 'constants/colors';
-import * as SECTIONS from 'constants/sections';
+import * as pages from 'constants/pages';
 
 const getClasses = makeStyles(theme => ({
-  icon: {
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    height: '24px',
-    width: '24px',
-  },
-  iconInstagram: {
-    color: COLORS.INSTAGRAM,
-  },
-  iconTelegram: {
-    color: COLORS.TELEGRAM,
-  },
   iconWorkbooks: {
     transform: 'rotate(15deg)',
   },
@@ -65,33 +52,28 @@ const LeftNavPanel = ({
   return (
     <div className={classes.leftNavPanel}>
       <List>
-        <ListItem button>
+        <ListItem selected variant="button">
           <Avatar
             alt="Nataliia Kovalchuk"
-            className={classes.icon}
+            size={24}
             src="/me.jpg"
           />
           <div className={classes.paddingLeft2x}>
             <Typography>
               {formatMessage({
-                id: `section.${SECTIONS.ABOUT_ME}`
+                id: `page.${pages.ABOUT_ME}`
               })}
             </Typography>
           </div>
         </ListItem>
-        <ListItem button>
-          <div
-            className={classNames(
-              classes.iconWorkbooks,
-              classes.icon,
-            )}
-          >
-            <IconMenuBook />
+        <ListItem variant="button">
+          <div className={classes.iconWorkbooks}>
+            <IconWorkbook />
           </div>
           <div className={classes.paddingLeft2x}>
             <Typography>
               {formatMessage({
-                id: `section.${SECTIONS.WORKBOOKS}`
+                id: `page.${pages.WORKBOOKS}`
               })}
             </Typography>
           </div>
@@ -103,14 +85,12 @@ const LeftNavPanel = ({
           <div className={classes.paddingLeft2x}>
             <Typography>
               {`${formatMessage({
-                id: `section.${SECTIONS.CONTACTS}`
+                id: 'contacts',
               })}:`}
             </Typography>
           </div>
           <ListItem>
-            <div className={classes.icon}>
-              <IconTelegram className={classes.iconTelegram} />
-            </div>
+            <IconTelegram />
             <div className={classes.paddingLeft2x}>
               <Link href="https://telegram.me/supernatant">
                 <Typography>
@@ -122,9 +102,7 @@ const LeftNavPanel = ({
             </div>
           </ListItem>
           <ListItem>
-            <div className={classes.icon}>
-              <IconInstagram className={classes.iconInstagram} />
-            </div>
+            <IconInstagram />
             <div className={classes.paddingLeft2x}>
               <Link href="https://www.instagram.com/biologistka/">
                 <Typography>

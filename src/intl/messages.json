@@ -1,6 +1,7 @@
 {
   "cancel": "Cancel",
   "confirmPassword": "Confirm password",
+  "contacts": "Contacts",
   "email": "E-mail",
   "error.emptyConfirmPassword": "\"Confirm password\" field can't be empty",
   "error.emptyLogin": "\"E-mail\" field can't be empty",
@@ -13,12 +14,11 @@
   "fetch.loading": "Loading...",
   "login": "Login",
   "name": "Name",
-  "page.MAIN": "Main",
+  "page.aboutMe": "About me",
+  "page.main": "Main",
+  "page.workbooks": "Workbooks",
   "password": "Password",
   "phoneNumber": "Phone",
-  "section.ABOUT_ME": "About me",
-  "section.WORKBOOKS": "Workbooks",
-  "section.CONTACTS": "Contacts",
   "signIn": "Sign in",
   "signUp": "Sign up"
 }

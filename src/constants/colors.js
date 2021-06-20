@@ -42,6 +42,12 @@ export const MAIN_BUTTON = {
   text: '#FFFFFF'
 };
 
+export const LIST_ITEM = {
+  border: BROWN._50,
+  hovered: '#f4ead9',
+  selected: '#ece0ca',
+};
+
 export const LEFT_NAV_PANEL = {
   background: '#f6efe6',
 };
