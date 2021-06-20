@@ -1,16 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from "react-intl";
 import { makeStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import Link from '@material-ui/core/Link';
 
 import Avatar from 'components/Avatar';
 import IconInstagram from 'components/icons/Instagram';
 import IconTelegram from 'components/icons/Telegram';
 import IconWorkbook from 'components/icons/Workbook';
-import List from 'components/List'
-import ListItem from 'components/ListItem'
+import Link from 'components/Link';
+import List from 'components/List';
+import ListItem from 'components/ListItem';
 import Typography from 'components/Typography';
+import useCurrentPage from 'hooks/userCurrentPage';
 import * as COLORS from 'constants/colors';
 import * as pages from 'constants/pages';
 
@@ -44,40 +45,76 @@ const getClasses = makeStyles(theme => ({
 }));
 
 const LeftNavPanel = ({
-
+  onChange,
 }) => {
   const classes = getClasses();
   const { formatMessage } = useIntl();
+  const currentPage = useCurrentPage();
 
   return (
     <div className={classes.leftNavPanel}>
-      <List>
-        <ListItem selected variant="button">
-          <Avatar
-            alt="Nataliia Kovalchuk"
-            size={24}
-            src="/me.jpg"
-          />
-          <div className={classes.paddingLeft2x}>
+      <List onClick={onChange}>
+        <Link
+          to={location => ({
+            ...location,
+            pathname: `/${pages.MAIN}`
+          })}
+        >
+          <ListItem
+            selected={currentPage === pages.MAIN}
+            variant="button"
+          >
             <Typography>
-              {formatMessage({
-                id: `page.${pages.ABOUT_ME}`
-              })}
+              Main
             </Typography>
-          </div>
-        </ListItem>
-        <ListItem variant="button">
-          <div className={classes.iconWorkbooks}>
-            <IconWorkbook />
-          </div>
-          <div className={classes.paddingLeft2x}>
-            <Typography>
-              {formatMessage({
-                id: `page.${pages.WORKBOOKS}`
-              })}
-            </Typography>
-          </div>
-        </ListItem>
+          </ListItem>
+        </Link>
+        <Link
+          to={location => ({
+            ...location,
+            pathname: `/${pages.ABOUT_ME}`
+          })}
+        >
+          <ListItem
+            selected={currentPage === pages.ABOUT_ME}
+            variant="button"
+          >
+            <Avatar
+              alt="Nataliia Kovalchuk"
+              size={24}
+              src="/me.jpg"
+            />
+            <div className={classes.paddingLeft2x}>
+              <Typography>
+                {formatMessage({
+                  id: `page.${pages.ABOUT_ME}`
+                })}
+              </Typography>
+            </div>
+          </ListItem>
+        </Link>
+        <Link
+          to={location => ({
+            ...location,
+            pathname: `/${pages.WORKBOOKS}`
+          })}
+        >
+          <ListItem
+            selected={currentPage === pages.WORKBOOKS}
+            variant="button"
+          >
+            <div className={classes.iconWorkbooks}>
+              <IconWorkbook />
+            </div>
+            <div className={classes.paddingLeft2x}>
+              <Typography>
+                {formatMessage({
+                  id: `page.${pages.WORKBOOKS}`
+                })}
+              </Typography>
+            </div>
+          </ListItem>
+        </Link>
       </List>
       <div className={classes.leftNavPanelBottom}>
         <div className={classes.leftNavPanelBackgroundImage} />
@@ -117,6 +154,10 @@ const LeftNavPanel = ({
       </div>
     </div>
   );
+};
+
+LeftNavPanel.propTypes = {
+  onChange: PropTypes.func,
 };
 
 export default LeftNavPanel;

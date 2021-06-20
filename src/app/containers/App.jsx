@@ -39,6 +39,12 @@ export default () => {
             <Route path={`/${PAGES.MAIN}`}>
               <PageMain />
             </Route>
+            <Route path={`/${PAGES.ABOUT_ME}`}>
+              <PageMain />
+            </Route>
+            <Route path={`/${PAGES.WORKBOOKS}`}>
+              <PageMain />
+            </Route>
             <Redirect from="*" to={`/${PAGES.MAIN}`} />
           </Switch>
         </IntlProvider>

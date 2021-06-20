@@ -89,7 +89,6 @@ const Header = () => {
     opened: false,
   });
   const [authDialogOpened, setAuthDialogOpened] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(lang);
 
   return (
     <div className={classes.container}>
@@ -121,7 +120,12 @@ const Header = () => {
               })}
               onOpen={() => {}}
             >
-              <LeftNavPanel />
+              <LeftNavPanel
+                onChange={() => setLeftMenuOptions({
+                  ...leftMenuOptions,
+                  opened: false,
+                })}
+              />
             </SwipeableDrawer>
           </div>
         )}
@@ -153,7 +157,9 @@ const Header = () => {
               onClose={() => setAuthDialogOpened(false)}
             />
             <DialogContent>
-              <AuthorizationForm />
+              <AuthorizationForm
+                onSuccess={() => setAuthDialogOpened(false)}
+              />
             </DialogContent>
           </Dialog>
         )}
@@ -170,17 +176,14 @@ const Header = () => {
         <div className={classes.paddingLeft}>
           <Select
             focusable={false}
-            value={selectedLanguage}
-            onChange={({ target }) => {
-              setSelectedLanguage(target.value);
-              history.replace({
-                pathname: history.location.pathname,
-                search: `?${new URLSearchParams({
-                  ...locationSearch,
-                  lang: target.value,
-                }).toString()}`,
-              });
-            }}
+            value={lang}
+            onChange={({ target }) => history.replace({
+              pathname: history.location.pathname,
+              search: `?${new URLSearchParams({
+                ...locationSearch,
+                lang: target.value,
+              }).toString()}`,
+            })}
           >
             {Object
               .keys(LANGUAGES)

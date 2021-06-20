@@ -105,7 +105,7 @@ const initialState = {
 };
 
 const AuthorizationForm = ({
-  onSuccess, // TODO: add impl
+  onSuccess,
 }) => {
   const classes = getClasses();
 
@@ -122,6 +122,12 @@ const AuthorizationForm = ({
   useEffect(() => {
     clearErrors();
   }, []);
+
+  useEffect(() => {
+    if (user.isAuthorised && onSuccess) {
+      onSuccess();
+    }
+  }, [user.isAuthorised]);
 
   return (
     <div className={classes.container}>

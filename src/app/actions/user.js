@@ -224,26 +224,29 @@ const successSignOut = () => ({
   type: SUCCESS_SIGN_OUT,
 });
 
-const signOut = () => {
+const signOut = ({
+  dispatch,
+}) => {
   const {
     BASE_URL,
     USERS_SERVICE,
   } = config;
 
   return postJson({
+    dispatch,
     url: `${BASE_URL}${USERS_SERVICE}/user/signOut`,
   });
 };
 
 export const fetchSignOut = () => (dispatch) => {
   dispatch(requestSignOut());
-  return signOut()
-    .then(() => {
-      clearToken();
-      clearTokenRefreshKey();
-      clearTokenExpirationTime();
-      dispatch(successSignOut());
-    })
-    .catch(errors => dispatch(errorSignOut(errors)))
+  return signOut({
+    dispatch,
+  }).then(() => {
+    clearToken();
+    clearTokenRefreshKey();
+    clearTokenExpirationTime();
+    dispatch(successSignOut());
+  }).catch(errors => dispatch(errorSignOut(errors)))
 };
 
