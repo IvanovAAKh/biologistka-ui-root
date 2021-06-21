@@ -39,7 +39,7 @@ const Link = ({
 Link.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
-  to: PropTypes.object,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   underline: PropTypes.bool,
 };
 

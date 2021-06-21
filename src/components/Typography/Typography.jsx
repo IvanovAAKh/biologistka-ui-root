@@ -8,6 +8,9 @@ const getClasses = makeStyles(theme => ({
   error: {
     color: COLORS.ERROR_TEXT,
   },
+  inherit: {
+    color: 'inherit',
+  },
   primary: {
     color: theme.palette.text.primary,
   },
@@ -40,6 +43,7 @@ const Typography = ({
 Typography.propTypes = {
   color: PropTypes.oneOf([
     'error',
+    'inherit',
     'primary',
     'secondary',
     'tertiary',

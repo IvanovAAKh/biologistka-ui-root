@@ -12,7 +12,9 @@ import {
 
 import IntlProvider from 'components/IntlProvider';
 import Header from 'components/Header';
+import PageAboutUs from 'pageProviders/AboutUs';
 import PageMain from 'pageProviders/Main';
+import PageWorkbooks from 'pageProviders/Workbooks';
 import TokenUpdater from 'components/TokenUpdater';
 import MUI_THEME from 'constants/muiTheme';
 import * as PAGES from 'constants/pages';
@@ -40,10 +42,10 @@ export default () => {
               <PageMain />
             </Route>
             <Route path={`/${PAGES.ABOUT_ME}`}>
-              <PageMain />
+              <PageAboutUs />
             </Route>
             <Route path={`/${PAGES.WORKBOOKS}`}>
-              <PageMain />
+              <PageWorkbooks />
             </Route>
             <Redirect from="*" to={`/${PAGES.MAIN}`} />
           </Switch>

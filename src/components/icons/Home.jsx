@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SvgIcon from '../SvgIcon';
 
-/* eslint-disable max-len */
-const Menu = ({
+const Home = ({
   color = 'icon',
   size = 24,
 }) => {
@@ -20,17 +19,17 @@ const Menu = ({
     >
       <g>
         <path
-          d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
           fill={actualColor}
+          d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
         />
       </g>
     </SvgIcon>
   );
 };
 
-Menu.propTypes = {
+Home.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 };
 
-export default Menu;
+export default Home;

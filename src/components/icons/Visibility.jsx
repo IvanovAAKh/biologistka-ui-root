@@ -12,7 +12,6 @@ const Close = ({
   const actualColor = theme.palette[color] ? theme.palette[color].main : color;
   return (
     <SvgIcon
-      nativeColor={actualColor}
       style={{
         height: `${size}px`,
         width: `${size}px`,

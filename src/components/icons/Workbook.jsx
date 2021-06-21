@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SvgIcon from '../SvgIcon';
 
-/* eslint-disable max-len */
 const Workbook = ({
-  color = colors.BROWN._100,
+  color = 'icon',
   size = 24,
 }) => {
   const theme = useTheme();
   const actualColor = theme.palette[color] ? theme.palette[color].main : color;
   return (
     <SvgIcon
-      nativeColor={actualColor}
       style={{
         height: `${size}px`,
         width: `${size}px`,

@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import { makeStyles } from '@material-ui/core/styles';
 
 import Avatar from 'components/Avatar';
+import IconHome from 'components/icons/Home';
 import IconInstagram from 'components/icons/Instagram';
 import IconTelegram from 'components/icons/Telegram';
 import IconWorkbook from 'components/icons/Workbook';
@@ -64,9 +65,17 @@ const LeftNavPanel = ({
             selected={currentPage === pages.MAIN}
             variant="button"
           >
-            <Typography>
-              Main
-            </Typography>
+            <IconHome
+              color={COLORS.BROWN._100}
+              size={24}
+            />
+            <div className={classes.paddingLeft2x}>
+              <Typography>
+                {formatMessage({
+                  id: `page.${pages.MAIN}`,
+                })}
+              </Typography>
+            </div>
           </ListItem>
         </Link>
         <Link
@@ -104,7 +113,10 @@ const LeftNavPanel = ({
             variant="button"
           >
             <div className={classes.iconWorkbooks}>
-              <IconWorkbook />
+              <IconWorkbook
+                color={COLORS.BROWN._100}
+                size={24}
+              />
             </div>
             <div className={classes.paddingLeft2x}>
               <Typography>

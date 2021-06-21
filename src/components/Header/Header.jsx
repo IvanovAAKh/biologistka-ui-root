@@ -192,7 +192,7 @@ const Header = () => {
                   key={langCode}
                   value={langCode}
                 >
-                  <Typography color="textPrimary">
+                  <Typography>
                     {INTERFACE_LANGUAGES[langCode]}
                   </Typography>
                 </MenuItem>

@@ -33,7 +33,8 @@ const getClasses = makeStyles((theme) => ({
   },
   leftNavPanel: {
     height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-    position: 'fixed',
+    position: 'sticky',
+    top: `${HEADER_HEIGHT}px`,
   },
   leftNavPanelContainer: {
     display: 'flex',
@@ -59,7 +60,7 @@ const getClasses = makeStyles((theme) => ({
   },
 }));
 
-const PagesContainer = ({
+const PageContainer = ({
   children,
   fullWidth,
 }) => {
@@ -94,4 +95,4 @@ const PagesContainer = ({
   )
 };
 
-export default PagesContainer;
+export default PageContainer;

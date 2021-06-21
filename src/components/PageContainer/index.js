@@ -1,6 +1,6 @@
 import React from 'react';
-import PagesContainer from './PageContainer';
+import PageContainer from './PageContainer';
 
 export default (props) => (
-  <PagesContainer {...props} />
+  <PageContainer {...props} />
 )
