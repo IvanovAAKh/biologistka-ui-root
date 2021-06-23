@@ -15,9 +15,10 @@ import {
 
 const getClasses = makeStyles((theme) => ({
   container: {
-    justifyContent: 'center',
     background: COLORS.PAGE_CONTAINER.background,
     display: 'flex',
+    justifyContent: 'center',
+    minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
   },
   contentContainer: {
     background: COLORS.PAGE_CONTENT.background,
