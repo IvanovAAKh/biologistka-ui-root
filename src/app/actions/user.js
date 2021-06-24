@@ -122,7 +122,7 @@ export const fetchSignIn = ({
         password,
       }).then((response) => {
         setToken(response.token);
-        setTokenExpirationTime(response.expirationTime);
+        setTokenExpirationTime(response.tokenExpirationTime);
         setTokenRefreshKey(response.tokenRefreshKey);
         dispatch(successSignIn(response));
       }).catch(errors => dispatch(errorSignIn(errors)));

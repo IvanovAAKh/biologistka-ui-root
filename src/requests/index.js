@@ -66,7 +66,7 @@ const clearTokenData = () => {
   clearTokenExpirationTime();
 };
 
-export const fetchRefreshToken = (dispatch) => {
+export const fetchRefreshToken = () => (dispatch) => {
   return fetchPost({
     body: getRefreshTokenRequestBody(),
     url: getRefreshTokenRequestURL(),
@@ -74,13 +74,13 @@ export const fetchRefreshToken = (dispatch) => {
     if (response.ok) {
       return response.json()
         .then(({
-          expirationTime,
           token,
+          tokenExpirationTime,
           tokenRefreshKey,
         }) => {
           setToken(token);
           setTokenRefreshKey(tokenRefreshKey);
-          setTokenExpirationTime(expirationTime);
+          setTokenExpirationTime(tokenExpirationTime,);
         });
     }
     clearTokenData();
@@ -113,7 +113,7 @@ export const getJson = ({
           if (!tokenRefreshKey) {
             throw errors;
           }
-          return fetchRefreshToken(dispatch)
+          return fetchRefreshToken()(dispatch)
             .then(() => {
               return fetchGet({
                 params,
@@ -186,7 +186,7 @@ export const postJson = ({
           if (!tokenRefreshKey) {
             throw errors;
           }
-          return fetchRefreshToken(dispatch)
+          return fetchRefreshToken()(dispatch)
             .then(() => {
               return fetchPost({
                 body,

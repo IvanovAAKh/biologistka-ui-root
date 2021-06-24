@@ -32,12 +32,14 @@ const getClasses = makeStyles(theme => ({
   container: {
     alignItems: 'center',
     background: COLORS.HEADER,
+    boxShadow: '0px 0px 6px 0px',
     display: 'flex',
     justifyContent: 'space-between',
     maxHeight: `${HEADER_HEIGHT - 16}px`,
     padding: '8px 16px',
     position: 'sticky',
     top: 0,
+    zIndex: 999,
   },
   iconButtonContainer: {},
   icon: {
@@ -134,7 +136,7 @@ const Header = () => {
         </div>
       </div>
       <div className={classes.toolBarContainerRight}>
-        {!user.isAuthorised && (
+        {!user.isAuthorized && (
           <Button
             onClick={() => setAuthDialogOpened(true)}
             size="small"
@@ -163,7 +165,7 @@ const Header = () => {
             </DialogContent>
           </Dialog>
         )}
-        {user.isAuthorised && (
+        {user.isAuthorized && (
           <Button
             onClick={() => fetchSignOut()}
             size="small"

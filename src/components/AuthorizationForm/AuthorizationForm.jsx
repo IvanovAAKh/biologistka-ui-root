@@ -124,10 +124,10 @@ const AuthorizationForm = ({
   }, []);
 
   useEffect(() => {
-    if (user.isAuthorised && onSuccess) {
+    if (user.isAuthorized && onSuccess) {
       onSuccess();
     }
-  }, [user.isAuthorised]);
+  }, [user.isAuthorized]);
 
   return (
     <div className={classes.container}>
