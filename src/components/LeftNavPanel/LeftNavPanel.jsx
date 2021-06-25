@@ -67,7 +67,7 @@ const LeftNavPanel = ({
           >
             <IconHome
               color={COLORS.BROWN._100}
-              size={currentPage === pages.MAIN ? 32 : 24}
+              size={24}
             />
             <div className={classes.paddingLeft2x}>
               <Typography>
@@ -90,7 +90,7 @@ const LeftNavPanel = ({
           >
             <Avatar
               alt="Nataliia Kovalchuk"
-              size={currentPage === pages.ABOUT_ME ? 32 : 24}
+              size={24}
               src="/me.jpg"
             />
             <div className={classes.paddingLeft2x}>
@@ -115,7 +115,7 @@ const LeftNavPanel = ({
             <div className={classes.iconWorkbooks}>
               <IconWorkbook
                 color={COLORS.BROWN._100}
-                size={currentPage === pages.WORKBOOKS ? 32 : 24}
+                size={24}
               />
             </div>
             <div className={classes.paddingLeft2x}>
