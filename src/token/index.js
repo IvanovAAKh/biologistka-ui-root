@@ -1,4 +1,5 @@
 import config from 'config';
+import md5 from 'md5';
 
 const LOCAL_STORAGE_KEYS = {
   TOKEN: 'token',
@@ -16,6 +17,12 @@ export const setToken = (token) => {
 
 export const clearToken = () => {
   localStorage.removeItem(LOCAL_STORAGE_KEYS.TOKEN);
+};
+
+export const encryptTokenRefreshKey = (tokenRefreshKey) => {
+  return tokenRefreshKey
+    ? md5(tokenRefreshKey + config.tokenEncryptingSecretKey)
+    : tokenRefreshKey;
 };
 
 export const getTokenRefreshKey = () => {
@@ -43,7 +50,7 @@ export const clearTokenExpirationTime = () => {
 };
 
 export const getRefreshTokenRequestBody = () => ({
-  tokenRefreshKey: getTokenRefreshKey(),
+  tokenRefreshKey: encryptTokenRefreshKey(getTokenRefreshKey()),
 });
 
 export const getRefreshTokenRequestURL = () => {
